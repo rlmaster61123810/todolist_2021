@@ -9,7 +9,7 @@ class TodolistController extends Controller
 {
     public function index()
     {
-        $todolists = todolist::all();
+        $todolists = Todolist::all();
         return view('home', ['todolists' => $todolists]);
     }
 
@@ -25,9 +25,19 @@ class TodolistController extends Controller
         $todolist->save();
         return redirect('/');
     }
-    public function destroy(todolist $todolists)
+    public function edit($todolist_id)
     {
-        $todolists->delete();
-        return back();
+        $todolist = Todolist::find($todolist_id);
+        $data = [
+            'todolist' => $todolist,
+        ];
+
+        return view('edit', $data);
+    }
+    public function delete($id)
+    {
+        $todolist = Todolist::find($id);
+        $todolist->delete();
+        return redirect('/');
     }
 }

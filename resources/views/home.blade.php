@@ -17,8 +17,11 @@
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->content }}</td>
                     <td>
-                        <a href="{{ url('/todolist/' . $item->id . '/edit') }}" class="btn btn-warning">edit</a>
-                        <a href="{{ url('/todolist/' . $item->id . '/delete') }}" class="btn btn-danger">delete</a>
+                        <a href="/edit/{{ $item->id }}" class="btn btn-warning">edit</a>
+                        <a onclick="return confirm('แน่ใจหรือไม่ว่าจะลบข้อมูลนี้จริงๆ')"
+                            href="/delete/{{ $item->id }}" class="btn btn-danger btn-xs"><i class="fa fa-times"></i>
+                            delete</a>
+
                     </td>
                 </tr>
             @endforeach
